@@ -1,0 +1,34 @@
+<a href="{% url 'item_inventory:items_new' %}">Create Item</a>
+<a href="{% url 'item_inventory:index' %}">Containers</a>
+
+
+{% if items %}
+  <h1>Item List</h1>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th colspan=2>Actions</th>
+    </thead>
+    <tbody>
+      {% for item in items %}
+        <tr>
+          <td>
+            <a href="{% url 'item_inventory:items_show' item.id %}">{{ item.name }}</a>
+          </td>
+          <td>
+            {{ item.quantity }}
+          </td>
+          <td>
+            <a href="{% url 'item_inventory:items_update' item.id %}">Edit
+          </td>
+          <td>
+            <a href="{% url 'item_inventory:items_delete' item.id %}">Delete
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  No Items Yet.
+{% endif %}
